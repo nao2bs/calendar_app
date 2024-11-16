@@ -1,0 +1,61 @@
+{
+    "name": "Existing Docker Compose",
+    "dockerComposeFile": [
+      //2つ目のdocker-compose.ymlで1つ目の設定を上書きます
+      "../docker-compose.yml",
+      "docker-compose.yml"
+    ],
+    "service": "web", //docker-compse.ymlで記載されている起動対象のサービス名、Railsのサービスを指定します
+    "workspaceFolder": "/myapp", //起動時に接続するディレクトリ
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "Shopify.ruby-lsp",
+          "castwide.solargraph",
+          "kaiwood.endwise",
+          "craigmaslowski.erb",
+          "Codeium.codeium",
+          "hbenl.vscode-test-explorer",
+          "connorshea.vscode-ruby-test-adapter",
+          "KoichiSasada.vscode-rdbg"
+        ],
+        "runArgs": [
+          "--cpus=2",  // CPU を2つ割り当てる例
+          "--memory=4GB",  // 4GB のメモリを割り当てる例
+          "--ulimit", "nofile=-1:-1"  // ulimit を無制限に設定する例
+        ],
+        "settings": {
+          "editor.tabSize": 2,
+          "editor.formatOnSave": true,
+          "editor.renderWhitespace": "none",
+          "[ruby]": {
+            "editor.defaultFormatter": "castwide.solargraph"
+          },
+          "files.associations":     { "*.erb": "erb"  },
+          "emmet.includeLanguages": {   "erb": "html" },
+          // Settings for Solargraph
+          // https://github.com/castwide/solargraph
+          "solargraph.useBundler":  false,
+          "solargraph.diagnostics": false,
+          "solargraph.formatting":  true,  // Use Ctrl+Shift+P->Format to format
+          "solargraph.autoformat":  false,
+          "solargraph.definitions": true,
+          "solargraph.completion":  true,
+          "solargraph.references":  true,
+          "solargraph.symbols":     true,
+          "solargraph.rename":      true,
+          "solargraph.hover":       true,
+  
+          // Settings for Ruby LSP
+          // https://github.com/Shopify/vscode-ruby-lsp
+          "rubyLsp.formatter": "none",
+          "rubyLsp.enabledFeatures": {
+            "diagnostics": false,
+            "formatting":  false
+          }
+        }
+      }
+    },
+    "remoteUser": "root"
+  }
+  
