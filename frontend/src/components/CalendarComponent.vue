@@ -2,11 +2,11 @@
   <div>
     <h1>Calendar</h1>
     <h1 class="text-h1">Calendar</h1>
-    <ul>
+    <!-- <ul>
       <li v-for="event in events" :key="event.id">
         {{ event.name }}
       </li>
-    </ul>
+    </ul> -->
     <v-list>
       <v-list-item v-for="event in events" :key="event.id">
         {{ event.name }}
@@ -16,6 +16,8 @@
     <v-btn type="submit" @click="fetchEvents()">fetchEvents</v-btn>
     <v-sheet height="100vh">
       <v-calendar></v-calendar>
+      <v-calendar v-model="value" :events="events" @change="fetchEvents">
+      </v-calendar>
     </v-sheet>
     <CalendarDetails />
   </div>
@@ -25,6 +27,7 @@
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import CalendarDetails from "./CalendarDetails.vue";
+// import events from "@/store/modules/events";
 
 export default {
   name: "CalendarComponent",
@@ -32,7 +35,7 @@ export default {
     CalendarDetails,
   },
   data: () => ({
-    eventsData: [],
+    value: new Date("2024/11/01"), // 表示する月を指定
   }),
   computed: {
     ...mapGetters("events", ["events"]),
