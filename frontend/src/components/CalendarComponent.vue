@@ -16,6 +16,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
 import CalendarDetails from "./CalendarDetails.vue";
 
 export default {
@@ -24,8 +25,11 @@ export default {
     CalendarDetails,
   },
   data: () => ({
-    events: [],
+    eventsData: [],
   }),
+  computed: {
+    ...mapGetters("events", ["events"]),
+  },
   methods: {
     fetchEvents() {
       axios
@@ -37,6 +41,7 @@ export default {
           console.log(error);
         });
     },
+    ...mapActions("events", ["fetchEvents"]),
   },
 };
 </script>
