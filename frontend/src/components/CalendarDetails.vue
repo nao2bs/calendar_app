@@ -19,7 +19,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "CalendarDetails",
   data: () => ({
-    eventsData: [],
+    events: [],
   }),
   computed: {
     ...mapGetters("events", ["events"]),
@@ -27,7 +27,7 @@ export default {
   methods: {
     fetchEvents() {
       axios
-        .get("http://localhost:3000/events")
+        .get("http://127.0.0.1:3000/events")
         .then((response) => {
           this.events = response.data;
         })

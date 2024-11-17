@@ -7,8 +7,8 @@ const state = {
 };
 
 const getters = {
-  events: (state) => state.events,
-  eventsData: (state) =>
+  // events: (state) => state.events,
+  events: (state) =>
     state.events.map((event) => {
       return {
         ...event,

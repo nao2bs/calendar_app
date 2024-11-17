@@ -15,9 +15,11 @@
 
     <v-btn type="submit" @click="fetchEvents()">fetchEvents</v-btn>
     <v-sheet height="100vh">
-      <v-calendar></v-calendar>
-      <v-calendar v-model="value" :events="events" @change="fetchEvents">
-      </v-calendar>
+      <v-calendar
+        v-model="value"
+        :events="events"
+        @change="fetchEvents"
+      ></v-calendar>
     </v-sheet>
     <CalendarDetails />
   </div>
@@ -35,7 +37,7 @@ export default {
     CalendarDetails,
   },
   data: () => ({
-    value: new Date("2024/11/01"), // 表示する月を指定
+    value: new Date("2021/07/01"), // 表示する月を指定
   }),
   computed: {
     ...mapGetters("events", ["events"]),
@@ -43,7 +45,7 @@ export default {
   methods: {
     fetchEvents() {
       axios
-        .get("http://localhost:3000/events")
+        .get("http://127.0.0.1:3000/events")
         .then((response) => {
           this.events = response.data;
         })
