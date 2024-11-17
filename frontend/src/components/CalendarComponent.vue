@@ -27,8 +27,22 @@
       </v-sheet>
     </v-sheet>
 
-    <v-dialog :value="dialogMessage !== ''">
+    <!-- <v-dialog :value="dialogMessage !== ''">
       <h1>{{ dialogMessage }}</h1>
+    </v-dialog> -->
+
+    <v-dialog :value="event !== null">
+      <div v-if="event !== null">
+        <v-card>
+          <h1>イベント詳細</h1>
+          <p>イベント名: {{ event.name }}</p>
+          <p>開始日時: {{ event.start }}</p>
+          <p>終了日時: {{ event.end }}</p>
+          <p>日付: {{ event.time }}</p>
+          <p>説明: {{ event.description }}</p>
+          <p>カラー: {{ event.color }}</p>
+        </v-card>
+      </div>
     </v-dialog>
   </div>
 </template>
@@ -41,10 +55,11 @@ export default {
   name: "CalendarComponent",
   data: () => ({
     value: new Date("2021/07/01"), // 表示する月を指定
-    dialogMessage: "",
+    // dialogMessage: "",
   }),
   computed: {
     ...mapGetters("events", ["events"]),
+    ...mapGetters("events", ["event"]),
     title() {
       return format(this.value, "yyyy年 M月");
     },
@@ -61,12 +76,14 @@ export default {
         });
     },
     ...mapActions("events", ["fetchEvents"]),
+    ...mapActions("events", ["setEvent"]),
     setToday() {
       this.value = format(new Date(), "yyyy/MM/dd");
     },
     showEvent({ event }) {
       // alert(event.name);
-      this.dialogMessage = event.name;
+      // this.dialogMessage = event.name;
+      this.setEvent(event);
     },
   },
 };
