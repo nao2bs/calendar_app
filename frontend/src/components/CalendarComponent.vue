@@ -22,9 +22,14 @@
           :month-format="
             (timestamp) => new Date(timestamp.date).getMonth() + 1 + '/'
           "
+          @click:event="showEvent"
         ></v-calendar>
       </v-sheet>
     </v-sheet>
+
+    <v-dialog :value="dialogMessage !== ''">
+      <h1>{{ dialogMessage }}</h1>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -36,6 +41,7 @@ export default {
   name: "CalendarComponent",
   data: () => ({
     value: new Date("2021/07/01"), // 表示する月を指定
+    dialogMessage: "",
   }),
   computed: {
     ...mapGetters("events", ["events"]),
@@ -57,6 +63,10 @@ export default {
     ...mapActions("events", ["fetchEvents"]),
     setToday() {
       this.value = format(new Date(), "yyyy/MM/dd");
+    },
+    showEvent({ event }) {
+      // alert(event.name);
+      this.dialogMessage = event.name;
     },
   },
 };
