@@ -25,7 +25,7 @@ services:
       BINDING: 0.0.0.0
     # ホストのカレントディレクトリ(.)とイメージ内の/myappディレクトリを同期させている
     volumes:
-      - .:/myapp
+      # - .:/myapp
       - gem_data:/usr/local/bundle
     ports:
       - "3000:3000"

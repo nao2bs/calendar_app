@@ -5,11 +5,11 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 # lts版のnodeをインストール
-# RUN . $HOME/.nvm/nvm.sh && \
-#     nvm install --lts && \
-#     nvm use --lts && \
-#     node -v && npm -v && \
-#     npm i -g yarn
+RUN . $HOME/.nvm/nvm.sh && \
+    nvm install --lts && \
+    nvm use --lts && \
+    node -v && npm -v && \
+    npm i -g yarn
 
 RUN mkdir /myapp
 WORKDIR /myapp
